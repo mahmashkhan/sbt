@@ -10,13 +10,24 @@ require('dotenv').config();
 
 
 const allowedOrigins = [
-    'http://localhost:3000', // Development
-    'https://sbt-fe.vercel.app/',
-    null,
+    'http://localhost:3000',
+    'http://sbt-production.up.railway.app',
+    'https://sbt-production.up.railway.app',
+    'https://sbt-fe-git-main-mehmashs-projects.vercel.app' // ✅ Your deployed FE
 ];
 
-app.use(
-    cors());
+const corsOptions = {
+    origin: function (origin, callback) {
+        console.log('🌍 Request Origin:', origin);
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        } else {
+            console.log(`❌ Blocked by CORS: ${origin}`);
+            return callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+};
 
 // Middleware
 app.use(express.json());
