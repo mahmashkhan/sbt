@@ -11,7 +11,7 @@ const morgan = require("morgan");
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: "http://sbt-production.up.railway.app" || "http://localhost:3000",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"],
 }));
