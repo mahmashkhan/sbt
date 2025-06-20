@@ -11,7 +11,7 @@ const morgan = require("morgan");
 app.use(express.json());
 app.use(morgan("dev"));
 const allowedOrigins = [
-    'http://localhost:3000',
+    
     'http://sbt-production.up.railway.app',
     'https://sbt-production.up.railway.app'
 ];
