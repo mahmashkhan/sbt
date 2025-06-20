@@ -1,0 +1,26 @@
+# Node modules folder
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Build output
+dist/
+build/
+
+# OS generated files
+.DS_Store
+
+# IDE settings (VSCode)
+.vscode/
+
+# npm package-lock file
+package-lock.json
+
+# Optional coverage folder
+coverage/
