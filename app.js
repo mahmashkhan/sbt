@@ -10,23 +10,30 @@ const morgan = require("morgan");
 // Middleware to parse JSON
 app.use(express.json());
 app.use(morgan("dev"));
+const cors = require('cors');
+
 const allowedOrigins = [
-    
-    'http://sbt-production.up.railway.app',
-    'https://sbt-production.up.railway.app'
+  'http://localhost:3000',
+  'http://sbt-production.up.railway.app',
+  'https://sbt-production.up.railway.app'
 ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-}));
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log('🌍 Request Origin:', origin); // ← Add this
+    if (!origin) return callback(null, true); // Allow non-browser requests
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      console.log(`❌ Blocked by CORS: ${origin}`);
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 
 
 mongoose.connect(process.env.MONGO_URI, {
