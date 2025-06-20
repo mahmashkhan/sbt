@@ -11,6 +11,7 @@ require('dotenv').config();
 
 const allowedOrigins = [
     'http://localhost:3000',
+    'https://sbt-fe-ch9k.vercel.app/',
     'http://bespoke-quokka-ef4acf.netlify.app',
     'https://bespoke-quokka-ef4acf.netlify.app',
     'https://sbt-fe-git-main-mehmashs-projects.vercel.app'
