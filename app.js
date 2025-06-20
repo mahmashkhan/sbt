@@ -10,7 +10,7 @@ const morgan = require("morgan");
 // Middleware to parse JSON
 app.use(express.json());
 app.use(morgan("dev"));
-const cors = require('cors');
+
 
 const allowedOrigins = [
   'http://localhost:3000',
