@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const allowedOrigins = [
   'http://localhost:3000', // Development
-  'https://sbt-production.up.railway.app', // Production
+  
 ];
 
 app.use(
