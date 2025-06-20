@@ -11,9 +11,9 @@ require('dotenv').config();
 
 const allowedOrigins = [
     'http://localhost:3000',
-    'http://sbt-production.up.railway.app',
-    'https://sbt-production.up.railway.app',
-    'https://sbt-fe-git-main-mehmashs-projects.vercel.app' // ✅ Your deployed FE
+    'http://bespoke-quokka-ef4acf.netlify.app/about',
+    'https://bespoke-quokka-ef4acf.netlify.app/about',
+    'https://sbt-fe-git-main-mehmashs-projects.vercel.app'
 ];
 
 const corsOptions = {
