@@ -7,9 +7,12 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 require('dotenv').config();
 
+
+
 const allowedOrigins = [
   'http://localhost:3000', // Development
-  
+ 
+  null, // Allow null origins (e.g., Postman, local files)
 ];
 
 app.use(
@@ -23,7 +26,7 @@ app.use(
         callback(new Error('Not allowed by CORS'));
       }
     },
-    credentials: true, // Support cookies/auth
+    credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
