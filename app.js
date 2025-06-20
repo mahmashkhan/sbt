@@ -10,11 +10,24 @@ const morgan = require("morgan");
 // Middleware to parse JSON
 app.use(express.json());
 app.use(morgan("dev"));
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://sbt-production.up.railway.app',
+    'https://sbt-production.up.railway.app'
+];
+
 app.use(cors({
-  origin: "http://sbt-production.up.railway.app" || "http://localhost:3000",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"],
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
 }));
+
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -27,7 +40,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 app.use('/api', Routes)
 
-app.listen(port, () => {  
+app.listen(port, () => {
     console.log(`server is listening at ${port}`);
 })
 // d892DgzHlxATDPCh 
