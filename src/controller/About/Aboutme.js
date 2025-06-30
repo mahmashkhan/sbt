@@ -2,14 +2,16 @@ const About = require('../../models/aboutmeModel');
 
 const Aboutme = async (req, res) => {
     try {
-        const about = req.body.about;
+        const { para1, para2, para3 } = req.body;
 
-        if (!about) {
+        if (!para1 || !para2 || !para3) {
             return res.status(400).json({ message: 'about field is required' });
         }
 
         const aboutme = new About({
-            about: about
+            para1: para1,
+            para2: para2,
+            para3: para3,
         });
 
         await aboutme.save();
